@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <appenders>
+        <console name="console">
+            <PatternLayout pattern="[%t] %d{HH:mm:ss} %-4r %-5p (%F:%L) %3x - %m%n"/>
+        </console>
+        <file name="file" fileName="logs/auxo-webpage-@env@.log">
+            <PatternLayout pattern="%d %-4r  %-5p [%t] (%F:%L) %10c %3x - %m%n"/>
+        </file>
+
+        <JDBC name="databaseAppender" tableName="log_log">
+            <ConnectionFactory class="com.way.log.ConnectionFactory" method="getDatabaseConnection"/>
+            <!--<Column name="EVENT_ID" literal="LOGGING.APPLICATION_LOG_SEQUENCE.NEXTVAL" />-->
+            <Column name="EVENT_DATE" isEventTimestamp="true"/>
+            <Column name="LEVEL" pattern="%level"/>
+            <Column name="LOGGER" pattern="%logger"/>
+            <Column name="MESSAGE" pattern="%message"/>
+            <Column name="THROWABLE" pattern="%ex{full}"/>
+        </JDBC>
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="file"/>
+            <appender-ref ref="console"/>
+            <AppenderRef ref="databaseAppender"/>
+        </root>
+    </loggers>
+</Configuration>
