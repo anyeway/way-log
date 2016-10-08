@@ -14,8 +14,8 @@
             <Column name="EVENT_DATE" isEventTimestamp="true"/>
             <Column name="LEVEL" pattern="%level"/>
             <Column name="LOGGER" pattern="%logger"/>
-            <Column name="MESSAGE" pattern="%message"/>
-            <Column name="THROWABLE" pattern="%ex{full}"/>
+            <Column name="MESSAGE" pattern="%message "/>
+            <Column name="THROWABLE" pattern="%X{userId}"/>
         </JDBC>
     </appenders>
 

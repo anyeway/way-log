@@ -1,6 +1,7 @@
 package com.way.log;
 
 
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ public class Application {
 
 
     public static void main(String[] args) {
+        ThreadContext.put("userId","userId=111");
         LOGGER.error(" 中文顶顶顶 ");
     }
 }
